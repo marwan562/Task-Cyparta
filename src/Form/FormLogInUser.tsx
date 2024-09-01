@@ -83,7 +83,11 @@ const FormLogInUser = ({ isLoading, onSave }: TFormProps) => {
               <FormItem>
                 <div className=" flex flex-row justify-between items-center">
                   <FormLabel htmlFor="password">Password</FormLabel>
-                  <Link href="#" className="text-sm underline  " prefetch={false}>
+                  <Link
+                    href="#"
+                    className="text-sm underline  "
+                    prefetch={false}
+                  >
                     Forgot password?
                   </Link>
                 </div>
@@ -111,21 +115,21 @@ const FormLogInUser = ({ isLoading, onSave }: TFormProps) => {
         <CardFooter>
           <Button disabled={isLoading} type="submit" className="w-full mt-5">
             {isLoading ? (
-              <div className="flex items-center">
-                <Loader2 className="h-5 w-5 animate-spin mr-2" />
+              <>
+                <Loader2 className="size-5 animate-spin mr-2" />
                 <span> Checking...</span>
-              </div>
+              </>
             ) : (
               "Login"
             )}
           </Button>
         </CardFooter>
-          <div className="text-center text-sm">
-            Don&apos;t have an account?{" "}
-            <Link href="#" className="underline" prefetch={false}>
-              Sign up
-            </Link>
-          </div>
+        <div className="text-center text-sm">
+          Don&apos;t have an account?{" "}
+          <Link href="#" className="underline" prefetch={false}>
+            Sign up
+          </Link>
+        </div>
       </form>
     </Form>
   );
