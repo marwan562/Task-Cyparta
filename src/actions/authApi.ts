@@ -1,3 +1,5 @@
+import { toast } from "sonner";
+
 type TPropsLogin = {
   email: string;
   password: string;
@@ -14,10 +16,11 @@ export const loginUserApi = async (body: TPropsLogin) => {
 
   if (!res.ok) {
     const errorData = await res.json();
+    toast.error(errorData.detail);
     throw new Error(errorData.detail || "Network Error.");
   }
 
+  toast.success("Login User Successfully.");
+
   return await res.json();
 };
-
-

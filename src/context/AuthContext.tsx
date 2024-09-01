@@ -10,6 +10,7 @@ import Cookies from "js-cookie";
 import { IUser, TUpdateUser } from "@/types";
 import { loginUserApi } from "@/actions/authApi";
 import { getUserApi, updateUserDetailsApi } from "@/actions/userApi";
+import { toast } from "sonner";
 
 type AuthContextType = {
   user: IUser | null;
@@ -49,7 +50,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setLoading(true);
     try {
       const data = await loginUserApi(body);
-      Cookies.set("token", data.token);
+      Cookies.set("token", data.access);
       await fetchUser();
     } catch (error) {
       console.error("Error logging in:", error);
