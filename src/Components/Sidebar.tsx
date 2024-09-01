@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useState } from "react";
 import {
   ChevronDown,
@@ -22,7 +21,7 @@ interface SidebarProps {
   className?: string;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ className = "" }) => {
+const Sidebar = ({ className = "" }: SidebarProps) => {
   const pathname = usePathname();
   const [isEmployeesOpen, setIsEmployeesOpen] = useState(true);
 
@@ -54,7 +53,7 @@ const Sidebar: React.FC<SidebarProps> = ({ className = "" }) => {
   ];
 
   return (
-    <Card className={`w-full  rounded-[40px] ${className}`}>
+    <Card className={`w-full h-fit  rounded-[40px] ${className}`}>
       <div className="py-5">
         <Image
           width={230}

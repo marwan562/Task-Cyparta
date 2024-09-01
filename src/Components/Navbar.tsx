@@ -23,7 +23,7 @@ const Navbar = () => {
       <div className="flex justify-between items-center w-full  ">
         <div className=" space-y-2">
           <Sheet>
-            <SheetTrigger className="size-7 bg-black rounded-full block md:hidden">
+            <SheetTrigger className="size-7 bg-black rounded-full block lg:hidden">
               <ChevronRight className="size-5 text-white" />
             </SheetTrigger>
             <SheetContent className=" py-4" side={"left"}>
