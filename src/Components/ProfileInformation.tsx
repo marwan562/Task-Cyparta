@@ -1,6 +1,6 @@
 import { Separator } from "@/Components/ui/separator";
 import { IUser } from "@/types";
-import { Dot } from "lucide-react";
+import { Dot, Minus } from "lucide-react";
 
 export interface Employee {
   mobileNumber: string;
@@ -88,7 +88,7 @@ const EmployeeInfoItem = ({
             {Array(5)
               .fill(0)
               .map((_, i) => (
-                <Dot key={i} />
+                <Minus className=" animate-pulse" key={i} />
               ))}
           </div>
         )}
