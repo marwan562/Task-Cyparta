@@ -23,7 +23,7 @@ export default function EmployeeProfile() {
   useEffect(() => {
     const fetchEmployeeData = async () => {
       setLoading(true);
-      setError(null); // Reset error state before fetching data
+      setError(null);
 
       try {
         await new Promise((resolve) => setTimeout(resolve, 1500));
