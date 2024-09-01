@@ -3,7 +3,7 @@ type TPropsLogin = {
   password: string;
 };
 
-export const loginUser = async (body: TPropsLogin) => {
+export const loginUserApi = async (body: TPropsLogin) => {
   const res = await fetch(`${process.env.BASE_URL}/api/login/`, {
     method: "POST",
     headers: {

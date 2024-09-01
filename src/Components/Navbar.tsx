@@ -3,7 +3,6 @@
 import React from "react";
 import { Bell, ChevronRight, LogOut } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-import HeaderBreadCrumbs from "./HeaderBreadCrumbs";
 import { Button } from "./ui/button";
 import {
   DropdownMenu,
@@ -16,8 +15,6 @@ import {
 import {
   Sheet,
   SheetContent,
-  SheetHeader,
-  SheetTitle,
   SheetTrigger,
 } from "@/Components/ui/sheet";
 import Sidebar from "./Sidebar";
@@ -35,7 +32,6 @@ const Navbar = () => {
               <Sidebar />
             </SheetContent>
           </Sheet>
-      
         </div>
         <div className="flex items-center  space-x-4">
           <Button size={"icon"} className=" group " variant="outline">
