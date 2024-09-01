@@ -5,22 +5,33 @@ type TPropsLogin = {
   password: string;
 };
 
+const API_URL = `${process.env.BASE_URL}`;
+
 export const loginUserApi = async (body: TPropsLogin) => {
-  const res = await fetch(`${process.env.BASE_URL}/api/login/`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(body),
-  });
+  try {
+    const urlEncodedBody = new URLSearchParams({
+      email: body.email,
+      password: body.password,
+    });
 
-  if (!res.ok) {
-    const errorData = await res.json();
-    toast.error(errorData.detail);
-    throw new Error(errorData.detail || "Network Error.");
+    const res = await fetch(`${API_URL}/api/login/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: urlEncodedBody.toString(),
+    });
+
+    if (!res.ok) {
+      const errorData = await res.json();
+      toast.error(errorData.detail || "Network Error.");
+      throw new Error(errorData.detail || "Network Error.");
+    }
+
+    return await res.json();
+  } catch (error) {
+    toast.error("An unexpected error occurred.");
+    throw error;
   }
-
-  toast.success("Login User Successfully.");
-
-  return await res.json();
 };
+

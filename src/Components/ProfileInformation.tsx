@@ -1,10 +1,8 @@
 import { Separator } from "@/Components/ui/separator";
+import { IUser } from "@/types";
+import { Dot } from "lucide-react";
 
 export interface Employee {
-  firstName: string;
-  lastName: string;
-  email: string;
-  position: string;
   mobileNumber: string;
   dateOfBirth: string;
   maritalStatus: string;
@@ -19,13 +17,19 @@ export interface Employee {
   totalSalary: string;
 }
 
-const ProfileInformation = ({ employee }: { employee: Employee }) => {
+const ProfileInformation = ({
+  employee,
+  user,
+}: {
+  employee: Employee;
+  user: IUser | null;
+}) => {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
-      <EmployeeInfoItem label="First Name" value={employee.firstName} />
-      <EmployeeInfoItem label="Last Name" value={employee.lastName} />
+      <EmployeeInfoItem label="First Name" value={user?.first_name} />
+      <EmployeeInfoItem label="Last Name" value={user?.last_name} />
       <EmployeeInfoItem label="Mobile Number" value={employee.mobileNumber} />
-      <EmployeeInfoItem label="Email Address" value={employee.email} />
+      <EmployeeInfoItem label="Email Address" value={user?.email} />
       <EmployeeInfoItem label="Date of Birth" value={employee.dateOfBirth} />
       <EmployeeInfoItem label="Marital Status" value={employee.maritalStatus} />
       <EmployeeInfoItem label="Gender" value={employee.gender} />
@@ -46,8 +50,8 @@ const ProfileInformation = ({ employee }: { employee: Employee }) => {
             value={employee.totalSalary}
             className="text-red-600"
           />
-          <Separator/>
-          <Separator/>
+          <Separator />
+          <Separator />
         </div>
       </div>
     </div>
@@ -62,7 +66,7 @@ const EmployeeInfoItem = ({
   className,
 }: {
   label: string;
-  value: string;
+  value?: string;
   className?: string;
 }) => {
   const showSeparator = label !== "Salary/Hour" && label !== "Total Salary";
@@ -76,7 +80,19 @@ const EmployeeInfoItem = ({
       >
         {label}
       </h3>
-      <p className="text-base mb-1">{value}</p>
+      <p className="text-base mb-1">
+        {value ? (
+          value
+        ) : (
+          <div className=" flex flex-row items-center gap-2">
+            {Array(5)
+              .fill(0)
+              .map((_, i) => (
+                <Dot key={i} />
+              ))}
+          </div>
+        )}
+      </p>
       {showSeparator && <Separator />}
     </div>
   );

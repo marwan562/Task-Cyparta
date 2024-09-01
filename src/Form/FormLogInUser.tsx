@@ -53,8 +53,8 @@ const FormLogInUser = ({ isLoading, onSave }: TFormProps) => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className=" space-y-10">
-        <div className="space-y-4">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+        <div className="space-y-4" style={{marginBottom:25}}>
           {/* Email  */}
           <FormField
             control={form.control}
@@ -79,7 +79,7 @@ const FormLogInUser = ({ isLoading, onSave }: TFormProps) => {
             control={form.control}
             name="password"
             render={({ field }) => (
-              <FormItem className="mt-2">
+              <FormItem>
                 <FormLabel htmlFor="password">Password</FormLabel>
                 <FormControl>
                   <Input
@@ -88,7 +88,7 @@ const FormLogInUser = ({ isLoading, onSave }: TFormProps) => {
                     {...field}
                     icon={
                       <span
-                        className="h-4 w-4  text-gray-500 cursor-pointer"
+                        className="h-4 w-4 text-gray-500 cursor-pointer"
                         onClick={showPasswordHandler}
                       >
                         {!showPassword ? <EyeOff /> : <Eye />}
@@ -102,11 +102,11 @@ const FormLogInUser = ({ isLoading, onSave }: TFormProps) => {
             )}
           />
         </div>
-        <CardFooter className="mt-7">
-          <Button disabled={isLoading} type="submit" className="w-full ">
+        <CardFooter>
+          <Button disabled={isLoading} type="submit" className="w-full mt-5">
             {isLoading ? (
-              <div className="  flex flex-row items-center">
-                <Loader2 className=" size-5  animate-spin mr-2" />
+              <div className="flex items-center">
+                <Loader2 className="h-5 w-5 animate-spin mr-2" />
                 <span> Checking...</span>
               </div>
             ) : (

@@ -12,14 +12,12 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/Components/ui/dropdown-menu";
-import {
-  Sheet,
-  SheetContent,
-  SheetTrigger,
-} from "@/Components/ui/sheet";
+import { Sheet, SheetContent, SheetTrigger } from "@/Components/ui/sheet";
 import Sidebar from "./Sidebar";
+import { useAuth } from "@/context/AuthContext";
 
 const Navbar = () => {
+  const { user, logoutUser } = useAuth();
   return (
     <header className="flex flex-col lg:flex-row justify-between items-center mb-8">
       <div className="flex justify-between items-center w-full  ">
@@ -40,7 +38,7 @@ const Navbar = () => {
           <DropdownMenu>
             <DropdownMenuTrigger className="rounded-full">
               <Avatar className="rounded-full ">
-                <AvatarImage src="/images/cyprata-logo" alt="User" />
+                <AvatarImage src={user?.cover} alt="User" />
                 <AvatarFallback>U</AvatarFallback>
               </Avatar>
             </DropdownMenuTrigger>
@@ -52,7 +50,10 @@ const Navbar = () => {
               <DropdownMenuItem>Team</DropdownMenuItem>
               <DropdownMenuItem>Subscription</DropdownMenuItem>
               <hr />
-              <DropdownMenuItem className="bg-red-500 hover:bg-red-600 cursor-pointer ">
+              <DropdownMenuItem
+                onClick={() => logoutUser()}
+                className="bg-red-500 hover:bg-red-600 cursor-pointer "
+              >
                 {" "}
                 <LogOut className=" size-5 mr-2" /> Logout
               </DropdownMenuItem>

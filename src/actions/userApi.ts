@@ -28,7 +28,7 @@ export const updateUserDetailsApi = async ({
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
-      Authantication: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(body),
   });

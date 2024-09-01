@@ -10,27 +10,37 @@ import {
   DialogTrigger,
 } from "@/Components/ui/dialog";
 import FormEditUser from "@/Form/FormEditUser";
+import { IUser } from "@/types";
+import { useAuth } from "@/context/AuthContext";
 
-const UserHeaderDetails = ({ employee }) => {
+const UserHeaderDetails = ({
+  first_name,
+  last_name,
+  email,
+  image,
+}: {
+  first_name?: string;
+  last_name?: string;
+  email?: string;
+  image?: string;
+}) => {
+  const { updateUserDetails, loading } = useAuth();
   return (
     <>
       <div className="flex flex-col   sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-4 mb-7">
         <Avatar className="size-20">
-          <AvatarImage
-            src="/placeholder.svg?height=80&width=80"
-            alt={`${employee.firstName} ${employee.lastName}`}
-          />
-          <AvatarFallback>{`${employee.firstName[0]}${employee.lastName[0]}`}</AvatarFallback>
+          <AvatarImage src={image} alt={`${first_name} ${last_name}`} />
+          <AvatarFallback>{`U`}</AvatarFallback>
         </Avatar>
         <div>
-          <h2 className="text-xl font-semibold">{`${employee.firstName} ${employee.lastName}`}</h2>
+          <h2 className="text-xl font-semibold">{`${first_name} ${last_name}`}</h2>
           <p className="text-gray-500 flex flex-row gap-1  items-center">
             <BriefcaseBusiness className="size-5" />
-            {employee.position}
+            UX/UI DESIGNER
           </p>
           <p className="text-gray-500 flex flex-row gap-1  items-center">
             <Mail className="size-5" />
-            {employee.email}
+            {email}
           </p>
         </div>
       </div>
@@ -44,10 +54,16 @@ const UserHeaderDetails = ({ employee }) => {
           <DialogHeader>
             <DialogTitle>Edit profile</DialogTitle>
             <DialogDescription>
-              Make changes to your profile here. Click save when you're done.
+              Make changes to your profile here. Click save when you{"'"}re
+              done.
             </DialogDescription>
           </DialogHeader>
-          <FormEditUser />
+          <FormEditUser
+            isLoading={loading}
+            onSave={(body) =>
+              updateUserDetails(body)
+            }
+          />
         </DialogContent>
       </Dialog>
     </>

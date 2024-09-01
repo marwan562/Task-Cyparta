@@ -35,8 +35,7 @@ const FormEditUser = ({ isLoading, onSave }: TFormProps) => {
   });
 
   const onSubmit = (data: TFormSchema) => {
-    // onSave(data);
-    console.log(data)
+    onSave(data);
   };
 
   return (

@@ -5,13 +5,11 @@ import { useAuth } from "@/context/AuthContext";
 import FormLogInUser from "@/Form/FormLogInUser";
 import Image from "next/image";
 
-
 const LoginPage = () => {
+  const { loginUser, loading } = useAuth();
 
-const {loginUser,loading} = useAuth()
-
-  return (  
-    <div className="flex flex-col items-center justify-center min-h-screen">
+  return (
+    <div className="flex flex-col items-center justify-center h-screen">
       <Image
         width={225}
         height={102}
@@ -19,7 +17,7 @@ const {loginUser,loading} = useAuth()
         className=" object-cover"
         alt="cyprata-logo"
       />
-      <Card className="w-[530px]    mt-5 p-8   shadow-md">
+      <Card className="w-[530px]  mt-5 p-8   shadow-md">
         <FormLogInUser isLoading={loading} onSave={loginUser} />
       </Card>
     </div>
