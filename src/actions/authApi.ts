@@ -24,13 +24,11 @@ export const loginUserApi = async (body: TPropsLogin) => {
 
     if (!res.ok) {
       const errorData = await res.json();
-      toast.error(errorData.detail || "Network Error.");
       throw new Error(errorData.detail || "Network Error.");
     }
 
     return await res.json();
   } catch (error) {
-    toast.error("An unexpected error occurred.");
     throw error;
   }
 };
