@@ -1,4 +1,5 @@
 import { IUser, TUpdateUser } from "@/types";
+import { revalidatePath, revalidateTag } from "next/cache";
 
 export const getUser = async (token: string | null): Promise<IUser> => {
   const res = await fetch(`${process.env.BASE_URL}/api/profile/`, {
@@ -36,6 +37,8 @@ export const updateUserDetails = async ({
     const errorData = await res.json();
     throw new Error(errorData.detail || "Network Error.");
   }
+
+  revalidateTag("/")
 
   return await res.json();
   
