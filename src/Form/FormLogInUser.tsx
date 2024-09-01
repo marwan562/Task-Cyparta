@@ -14,6 +14,7 @@ import { Button } from "@/Components/ui/button";
 import { useState } from "react";
 import { Eye, EyeOff, Loader2 } from "lucide-react";
 import { CardFooter } from "@/Components/ui/card";
+import Link from "next/link";
 
 const FormSchema = z.object({
   email: z
@@ -54,7 +55,7 @@ const FormLogInUser = ({ isLoading, onSave }: TFormProps) => {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <div className="space-y-4" style={{marginBottom:25}}>
+        <div className="space-y-7" style={{ marginBottom: 25 }}>
           {/* Email  */}
           <FormField
             control={form.control}
@@ -80,7 +81,12 @@ const FormLogInUser = ({ isLoading, onSave }: TFormProps) => {
             name="password"
             render={({ field }) => (
               <FormItem>
-                <FormLabel htmlFor="password">Password</FormLabel>
+                <div className=" flex flex-row justify-between items-center">
+                  <FormLabel htmlFor="password">Password</FormLabel>
+                  <Link href="#" className="text-sm underline  " prefetch={false}>
+                    Forgot password?
+                  </Link>
+                </div>
                 <FormControl>
                   <Input
                     type={showPassword ? "text" : "password"}
@@ -114,6 +120,12 @@ const FormLogInUser = ({ isLoading, onSave }: TFormProps) => {
             )}
           </Button>
         </CardFooter>
+          <div className="text-center text-sm">
+            Don&apos;t have an account?{" "}
+            <Link href="#" className="underline" prefetch={false}>
+              Sign up
+            </Link>
+          </div>
       </form>
     </Form>
   );

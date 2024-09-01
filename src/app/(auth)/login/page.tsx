@@ -17,7 +17,7 @@ const LoginPage = () => {
         className=" object-cover"
         alt="cyprata-logo"
       />
-      <Card className="w-[530px]  mt-5 p-8   shadow-md">
+      <Card className="w-full max-w-[530px]   mx-3 mt-5 p-8   shadow-lg">
         <FormLogInUser isLoading={loading} onSave={loginUser} />
       </Card>
     </div>

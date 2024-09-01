@@ -5,8 +5,8 @@ export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   if (pathname === "/") {
+    
     const token = Cookies.get("accessToken");
-    console.log(token);
 
     if (token) {
       const redirectUrl = new URL("/employees/profile", request.url);
